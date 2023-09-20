@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 public class UsersDTO {
 
     @NotEmpty
-    private String name;
+    private String username;
 
     @NotEmpty
     private String email;

@@ -4,6 +4,7 @@ import com.faculdade.buspointbackend.dto.ResponseBase;
 import com.faculdade.buspointbackend.dto.UsersDTO;
 import com.faculdade.buspointbackend.dto.UsersResponseDTO;
 import com.faculdade.buspointbackend.entity.UsersEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.faculdade.buspointbackend.repository.UsersRepository;
 
@@ -24,7 +25,12 @@ public class UsersServices {
 
 
     public UsersResponseDTO createUsers(UsersDTO usersDTO) {
+        BCryptPasswordEncoder criptografar = new BCryptPasswordEncoder();
         var newUser = new UsersEntity(usersDTO);
+
+        String senhaCriptografada = criptografar.encode(newUser.getPassword());
+        newUser.setPassword(senhaCriptografada);
+
         UsersEntity userSave = usersRepository.save(newUser);
 
         return new UsersResponseDTO(userSave);

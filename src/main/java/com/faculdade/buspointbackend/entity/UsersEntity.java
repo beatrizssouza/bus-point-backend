@@ -10,7 +10,7 @@ import lombok.*;
 public class UsersEntity {
 
     public UsersEntity(UsersDTO usersDTO){
-        this.name = usersDTO.getName();
+        this.username = usersDTO.getUsername();
         this.email = usersDTO.getEmail();
         this.password = usersDTO.getPassword();
         this.phone = usersDTO.getPhone();
@@ -20,8 +20,8 @@ public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Name", nullable = false)
-    private String name;
+    @Column(name = "username", nullable = false)
+    private String username;
 
     @Column(name = "Email", nullable = false)
     private String email;
