@@ -1,35 +1,29 @@
 package com.faculdade.buspointbackend.controller;
-import com.faculdade.buspointbackend.dto.ResponseBase;
-import com.faculdade.buspointbackend.dto.UsersDTO;
-import com.faculdade.buspointbackend.dto.UsersResponseDTO;
-import com.faculdade.buspointbackend.entity.UsersEntity;
-import lombok.RequiredArgsConstructor;
+import com.faculdade.buspointbackend.domain.dto.ResponseBase;
+import com.faculdade.buspointbackend.domain.entity.User;
+import com.faculdade.buspointbackend.services.UserService;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.faculdade.buspointbackend.repository.UsersRepository;
-import com.faculdade.buspointbackend.services.UsersServices;
 
 import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("api/users")
 @CrossOrigin(methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
+@RolesAllowed("ADMIN_USER")
 public class UsersController {
 
-    private final UsersServices service;
-    //Criar usuarios
-    @PostMapping("/create")
-    public ResponseEntity<UsersResponseDTO> postUsers (@RequestBody @Valid UsersDTO usersDTO){
-        var result = service.createUsers(usersDTO);
-        return ResponseEntity.ok(result);
+    private final UserService userService;
+
+    public UsersController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<ResponseBase<List<UsersEntity>>>getUsers(){
-        var result = service.listAllUsers();
-        return ResponseEntity.ok(result);
+    @GetMapping
+    public List<User> getUsers(){
+        return userService.getAllUsers();
     }
 }
