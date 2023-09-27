@@ -1,4 +1,4 @@
-package com.faculdade.buspointbackend.dto;
+package com.faculdade.buspointbackend.domain.dto;
 
 import lombok.Getter;
 
