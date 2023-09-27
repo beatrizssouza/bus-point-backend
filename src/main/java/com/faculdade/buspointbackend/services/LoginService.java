@@ -33,6 +33,5 @@ public class LoginService {
         if (!passwordIsValid) throw AppException.of(AppError.INVALID_CREDENTIALS);
 
         return jwtHelper.createJwt(user.get());
-
     }
 }
