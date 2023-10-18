@@ -5,26 +5,27 @@ import com.faculdade.buspointbackend.repository.PointRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PointService {
     private final PointRepository pointRepository;
 
-    public PointService(PointRepository pointRepository){
+    public PointService(PointRepository pointRepository) {
         this.pointRepository = pointRepository;
     }
 
-    public List<Point> getAllPoints(){
+    public void createPoint(Point point){
+        this.pointRepository.save(point);
+    }
+
+    public List<Point> getAllPoints() {
         return pointRepository.findAll();
     }
-
-    public Point createPoint(Point point){
-      return pointRepository.save(point);
+    public Optional<Point> findByPoint(String latitude, String longitude){
+        return pointRepository.findByLatitudeAndLongitude(latitude, longitude);
     }
-
-
-
-
-
+    public void deletePointById(Integer id){
+        pointRepository.deleteById(id);
+    }
 }
-
