@@ -8,6 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface PointRepository extends JpaRepository<Point,Integer> {
-
-    Optional<Point> findByLatitudeAndLongitude(String latitude, String longitude);
 }
