@@ -22,9 +22,7 @@ public class PointService {
     public List<Point> getAllPoints() {
         return pointRepository.findAll();
     }
-    public Optional<Point> findByPoint(String latitude, String longitude){
-        return pointRepository.findByLatitudeAndLongitude(latitude, longitude);
-    }
+
     public void deletePointById(Integer id){
         pointRepository.deleteById(id);
     }
