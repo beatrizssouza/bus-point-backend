@@ -22,8 +22,8 @@ public class PointService {
     public List<Point> getAllPoints() {
         return pointRepository.findAll();
     }
-
-    public void deletePointById(Integer id){
-        pointRepository.deleteById(id);
+  
+    public void deletePointById(Long id){
+        pointRepository.deleteById(Math.toIntExact(id));
     }
 }
