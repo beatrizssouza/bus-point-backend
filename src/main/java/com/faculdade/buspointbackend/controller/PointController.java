@@ -35,5 +35,6 @@ public class PointController {
     public ResponseEntity<String> deletePoint(@PathVariable Long id){
         pointService.deletePointById(id);
         return ResponseEntity.ok("Deletado com sucesso!");
+
     }
 }
