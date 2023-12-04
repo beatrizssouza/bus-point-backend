@@ -32,9 +32,10 @@ public class PointController {
         return ResponseEntity.ok("Criado com sucesso!");
     }
 
-    @PostMapping("/delete/{id}")
-    public ResponseEntity<String> deletePoint(@PathVariable @Valid Integer id){
+    @PostMapping("/{id}")
+    public ResponseEntity<String> deletePoint(@PathVariable Long id){
         pointService.deletePointById(id);
         return ResponseEntity.ok("Deletado com sucesso!");
+
     }
 }
