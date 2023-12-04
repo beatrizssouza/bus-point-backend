@@ -7,26 +7,24 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "linesBus")
+@Table(name = "linesBusPoints")
 public class LineBus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idLines;
 
     @Column(name = "nameLine",length = 50, nullable = false)
     private String nameLine;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "lines_of_days", joinColumns = @JoinColumn(name = "linesBus_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_lines_days")),
-    inverseJoinColumns = @JoinColumn(name = "line_schedules_id",referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_lines_days")))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "lines_of_days", joinColumns = @JoinColumn(name = "linesBus_id", referencedColumnName = "idLines", foreignKey = @ForeignKey(name = "fk_lines_days")),
+    inverseJoinColumns = @JoinColumn(name = "line_schedules_id",referencedColumnName = "idLinesSchedules", foreignKey = @ForeignKey(name = "fk_lines_days")))
     private List<LineSchedules> linesSchedules;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "lines_of_days", joinColumns = @JoinColumn(name = "lines_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_lines_point")),
-            inverseJoinColumns = @JoinColumn(name = "point_id",referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_lines_point")))
-    private List<Point> points;
+    @Column(name = "point_id_list",length = 500, nullable = false)
+    private List<String> pointIdList;
 
 
 

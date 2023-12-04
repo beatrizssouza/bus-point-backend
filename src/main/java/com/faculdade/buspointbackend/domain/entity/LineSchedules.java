@@ -10,15 +10,15 @@ import java.util.List;
 @Table(name = "LineSchedules")
 public class LineSchedules {
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idLinesSchedules;
 
     @Column(name = "hours",nullable = false)
     private List<String> hours;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "days", nullable = false)
-    private DaysOfTheWeek days;
+    private List<DaysOfTheWeek>  days;
 
 
 }
